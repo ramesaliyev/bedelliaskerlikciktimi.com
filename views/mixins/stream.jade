@@ -1,0 +1,10 @@
+mixin stream(stream)
+    .stream(class='stream-' + stream.name)
+        a.stream-title(href=stream.link target="_blank") #{stream.title}
+        ul.stream-content
+            each content in stream.content
+                li.stream-content-item
+                    div.stream-content-text !{content.text}
+                        span.stream-content-author - #{content.author}
+                    a.stream-content-date(href=content.url target="_blank") #{content.date}
+        .stream-update-time Son güncellenme tarihi #{stream.updateTime}

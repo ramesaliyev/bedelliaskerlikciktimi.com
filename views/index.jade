@@ -1,0 +1,12 @@
+include ./mixins/stream
+
+extends layout
+
+block content
+    .page-homepage
+        .page-homepage-header
+            .page-homepage-status.no #{statusText}
+
+        .page-homepage-content
+            each stream in streams
+                +stream(stream)

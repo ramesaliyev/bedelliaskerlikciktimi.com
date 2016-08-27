@@ -1,0 +1,61 @@
+.stream
+  position relative
+  height 360px
+  overflow auto
+  margin 30px 20px
+  padding 20px
+  box-sizing border-box
+  border 1px solid #DBDEDD
+  border-radius 3px
+  text-align left
+
+.stream-title
+  display block
+  font-weight 700
+  margin-bottom 30px
+
+.stream-content
+  color #333
+  list-style none
+  margin 0
+  padding 0
+
+.stream-content-item
+  margin-top 20px
+
+.stream-content-text
+  font-size 12px
+
+  a
+    color #000
+    text-decoration underline
+
+.stream-content-author
+  color #ccc
+
+.stream-content-date
+  display block
+  font-size 11px
+
+.stream-update-time
+  margin-top 30px
+  font-size 11px
+  color #ccc
+
+@media only screen and (min-width:700px)
+  .stream
+    display inline-block
+    margin-bottom 0
+    width 40%
+    height 420px
+
+    &:nth-child(2n+2)
+      margin-left 0
+
+@media only screen and (min-width:934px)
+  .stream
+    height 520px
+
+@media only screen and (min-width:1168px)
+  .stream
+    height 620px

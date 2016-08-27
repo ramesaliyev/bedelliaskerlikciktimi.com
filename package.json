@@ -1,0 +1,36 @@
+{
+  "name": "bedelliaskerlikciktimi.com",
+  "version": "1.0.0",
+  "description": "Bedelli askerlik güncel durum takip merkezi.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ramesaliyev/bedelliaskerlikciktimi.com.git"
+  },
+  "keywords": [
+    "bedelli",
+    "askerlik"
+  ],
+  "author": "Rameş Aliyev <creator@ramesaliyev.com> (http://ramesaliyev.com/)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ramesaliyev/bedelliaskerlikciktimi.com/issues"
+  },
+  "homepage": "http://bedelliaskerlikciktimi.com",
+  "private": true,
+  "scripts": {
+    "start": "node ./bin/www"
+  },
+  "dependencies": {
+    "async": "^2.0.1",
+    "debug": "2.2.0",
+    "express": "4.13.4",
+    "gulp": "3.9.1",
+    "gulp-rename": "1.2.2",
+    "gulp-stylus": "2.5.0",
+    "jade": "1.11.0",
+    "morgan": "1.7.0",
+    "normalize-styl": "3.0.3",
+    "request": "^2.74.0",
+    "serve-favicon": "2.3.0"
+  }
+}
