@@ -7,7 +7,9 @@ const express = require('express'),
 /**
  * Get requirements.
  */
-var async = require('async'),
+var config = global.config,
+    fetchers = config.fetchers,
+    async = require('async'),
     utils = require('../lib/utils'),
     eksisozluk = require('../fetchers/eksisozluk');
 
@@ -16,68 +18,46 @@ var async = require('async'),
  */
 router.get('/', function(req, res, next) {
   /**
-   * The answer is no.
-   */
-  const status = 'no';
-
-  /**
-   * Status messages.
-   */
-  const statusMessages = {
-    no: [
-      'HAYIR', 'ÇIKMADI', 'NO', 'CIKS', 'YOH', 'I-IH'
-    ],
-    yes: [
-      'ÇIKTI VALLA'
-    ]
-  };
-
-  /**
-   * Stream signatures.
-   */
-  var streamSignatures = [
-    {
-      name: 'eksisozluk',
-      title: 'ekşisözlük',
-      link: 'https://eksisozluk.com/bedelli-askerlik--39846',
-      updateTime: null,
-      instance: eksisozluk
-    },
-    {
-      name: 'twitter',
-      title: 'twitter',
-      link: 'https://twitter.com/search?q=bedelli%20askerlik&src=typd',
-      updateTime: null,
-      instance: eksisozluk
-    }
-  ];
-
-  /**
    * Create page data.
    */
   var pageData = {
-    title: 'Bedelli Askerlik Çıktı Mı? (Güncel Durum Takip Merkezi)',
-    statusText: utils.getRandomFromArray(statusMessages[status]),
-    streams: null
+    title: config.site.title,
+    description: config.site.description,
+    keywords: config.site.keywords,
+    status: config.status,
+    statusMessage: utils.getRandomFromArray(config.statusMessages[config.status]),
+    statusText: config.statusTexts[config.status]
   };
+
+  /**
+   * Set fetchers instances.
+   */
+  fetchers.eksisozluk.instance = eksisozluk;
+  fetchers.twitter.instance = eksisozluk;
+
+  /**
+   * Create ordered fetchers array.
+   */
+  var orderedFetchers = [
+    fetchers.twitter,
+    fetchers.eksisozluk
+  ];
 
   /**
    * Create fetch-able stream objects.
    */
-  var streams = Object.keys(streamSignatures).reduce(function(acc, name) {
-    var sign = streamSignatures[name];
-
-    acc[name] = function(callback) {
-      sign.instance.get(function(err, data) {
+  var streams = orderedFetchers.reduce(function(acc, fetcher) {
+    acc[fetcher.name] = function(callback) {
+      fetcher.instance.get(function(err, data) {
         if (err) {
           return callback(err);
         }
 
-        sign.content = data;
-        sign.updateTime = sign.instance.updateTime;
-        sign.instance = null;
+        fetcher.content = data;
+        fetcher.updateTime = fetcher.instance.updateTime;
+        fetcher.instance = null;
 
-        callback(null, sign);
+        callback(null, fetcher);
       })
     };
 

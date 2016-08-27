@@ -7,6 +7,11 @@ const express = require('express'),
       logger = require('morgan');
 
 /**
+ * Get configs.
+ */
+global.config = require('./configs/config.json');
+
+/**
  * Get lib.
  */
 const errorHandler = require('./lib/errorHandler');

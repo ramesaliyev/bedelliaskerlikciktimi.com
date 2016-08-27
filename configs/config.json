@@ -1,0 +1,32 @@
+{
+  "status": "no",
+  "statusMessages": {
+    "no": [
+      "HAYIR", "ÇIKMADI", "NO", "YOH", "CIKS", "I-IH", "MAALESEF"
+    ],
+    "yes": [
+      "ÇIKTI VALLA"
+    ]
+  },
+  "statusTexts": {
+    "no": "ama hakkında şunlar konuşuluyo;",
+    "yes": "ve bunlar da gelen ilk tepkiler;"
+  },
+  "site": {
+    "title": "Bedelli Askerlik Çıktı Mı? (Güncel Durum Takip Merkezi)",
+    "description": "Bedelli askerlik ile ilgili güncel haberler, bilgiler, yorumlar.",
+    "keywords": "bedelli askerlik, 2016"
+  },
+  "fetchers": {
+    "eksisozluk": {
+      "name": "eksisozluk",
+      "title": "ekşisözlük",
+      "link": "https://eksisozluk.com/bedelli-askerlik--39846"
+    },
+    "twitter": {
+      "name": "twitter",
+      "title": "twitter",
+      "link": "htps://twitter.com/search?q=bedelli%20askerlik&src=typd"
+    }
+  }
+}

@@ -7,4 +7,5 @@ mixin stream(stream)
                     div.stream-content-text !{content.text}
                         span.stream-content-author - #{content.author}
                     a.stream-content-date(href=content.url target="_blank") #{content.date}
+        a.stream-read-more(href=stream.link target="_blank") daha fazlasını oku...
         .stream-update-time Son güncellenme tarihi #{stream.updateTime}

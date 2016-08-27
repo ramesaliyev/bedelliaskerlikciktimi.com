@@ -37,17 +37,25 @@
   display block
   font-size 11px
 
-.stream-update-time
+.stream-read-more
+  display block
   margin-top 30px
+  font-size 12px
+
+.stream-update-time
   font-size 11px
   color #ccc
 
 @media only screen and (min-width:700px)
   .stream
+    height 420px
+
+@media only screen and (min-width:800px)
+  .stream
     display inline-block
     margin-bottom 0
     width 40%
-    height 420px
+    height 480px
 
     &:nth-child(2n+2)
       margin-left 0

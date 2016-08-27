@@ -5,7 +5,11 @@ extends layout
 block content
     .page-homepage
         .page-homepage-header
-            .page-homepage-status.no #{statusText}
+            .page-homepage-question Bedelli askerlik çıktı mı?
+            .page-homepage-status-response.no #{statusMessage}
+
+        .page-homepage-status-text
+            | #{statusText}
 
         .page-homepage-content
             each stream in streams
