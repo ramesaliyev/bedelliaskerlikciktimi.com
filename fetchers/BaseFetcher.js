@@ -25,7 +25,7 @@ function BaseFetcher(name, fetchURL) {
   this.cache = null;
 
   // Schedule auto-fetch.
-  this.schedule();
+  //this.schedule();
 }
 
 /**

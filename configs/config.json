@@ -2,7 +2,7 @@
   "status": "no",
   "statusMessages": {
     "no": [
-      "HAYIR", "ÇIKMADI", "NO", "YOH", "CIKS", "I-IH", "MAALESEF"
+      "HAYIR", "ÇIKMADI", "NO", "YOH", "CIKS", "I-IH"
     ],
     "yes": [
       "ÇIKTI VALLA"
@@ -27,7 +27,8 @@
     "twitter": {
       "name": "twitter",
       "title": "twitter",
-      "link": "htps://twitter.com/search?q=bedelli%20askerlik&src=typd"
+      "link": "https://twitter.com/search?q=bedelli%20askerlik&src=typd",
+      "fetchURL": ""
     }
   }
 }

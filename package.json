@@ -18,7 +18,8 @@
   "homepage": "http://bedelliaskerlikciktimi.com",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www"
+    "start": "DEBUG=app:* node ./bin/www",
+    "debug": "DEBUG=app:* node --debug ./bin/www"
   },
   "dependencies": {
     "async": "2.0.1",
@@ -33,6 +34,7 @@
     "node-schedule": "1.1.1",
     "normalize-styl": "3.0.3",
     "request": "2.74.0",
-    "serve-favicon": "2.3.0"
+    "serve-favicon": "2.3.0",
+    "twitter": "1.4.0"
   }
 }

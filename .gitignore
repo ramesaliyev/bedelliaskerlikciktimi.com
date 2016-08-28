@@ -1,4 +1,6 @@
 .idea
+*.log
 node_modules
 public/css
 data
+configs/twitter.json

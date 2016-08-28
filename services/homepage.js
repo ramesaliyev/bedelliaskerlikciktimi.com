@@ -6,6 +6,7 @@ var config = global.config,
     async = require('async'),
     utils = require('../lib/utils'),
     eksisozluk = require('../fetchers/eksisozluk'),
+    twitter = require('../fetchers/twitter'),
     debug = require('debug')('app:service:homepage');
 
 /**
@@ -39,7 +40,7 @@ HomePage.prototype.getData = function(done) {
    * Set fetchers instances.
    */
   fetchers.eksisozluk.instance = eksisozluk;
-  fetchers.twitter.instance = eksisozluk;
+  fetchers.twitter.instance = twitter;
 
   /**
    * Create fetch-able stream objects.
