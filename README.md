@@ -12,4 +12,4 @@ Bedelli askerlik güncel durum takip merkezi.
     DEBUG=app:* npm start
 
 ####Gidin:
-[localhost:3020](http://localhost:3020)
+[localhost:3100](http://localhost:3100)
