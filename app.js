@@ -4,7 +4,13 @@
 const express = require('express'),
       path = require('path'),
       favicon = require('serve-favicon'),
-      logger = require('morgan');
+      logger = require('morgan'),
+      moment = require('moment');
+
+/**
+ * Do configurations.
+ */
+moment.locale('tr');
 
 /**
  * Get configs.
