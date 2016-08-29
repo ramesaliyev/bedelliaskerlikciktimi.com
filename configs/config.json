@@ -27,7 +27,7 @@
     "twitter": {
       "name": "twitter",
       "title": "twitter",
-      "link": "https://twitter.com/search?q=bedelli%20askerlik&src=typd",
+      "link": "https://twitter.com/search?f=tweets&vertical=default&q=bedelli+askerlik&src=typd",
       "fetchURL": ""
     }
   }
