@@ -42,9 +42,9 @@ Twitter.prototype.collect = function(done) {
 
   // Twitter request options.
   var options = {
-    q: 'bedelli askerlik',
+    q: 'bedelli askerlik -filter:retweets',
     lang: 'tr',
-    count: 20
+    count: 30
   };
 
   // Get tweets.
