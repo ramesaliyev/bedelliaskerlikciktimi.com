@@ -4,13 +4,20 @@ extends layout
 
 block content
     .page-homepage
-        .page-homepage-header
-            .page-homepage-question Bedelli askerlik çıktı mı?
+        header.page-homepage-header
+            h1.page-homepage-question Bedelli askerlik çıktı mı?
             .page-homepage-status-response.no #{statusMessage}
 
-        .page-homepage-status-text
+        .page-homepage-seperator-text
             | #{statusText}
 
-        .page-homepage-content
+        main.page-homepage-content
             each stream in streams
                 +stream(stream)
+
+        .page-homepage-seperator-text
+            | başka bir takım önemli bağlantılar;
+
+        .page-homepage-links
+            a(href="https://www.change.org/search?q=bedelli%20askerlik" target="_blank" rel="nofollow") kampanyalar,
+            a(href="https://tr.wikipedia.org/wiki/Bedelli_askerlik" target="_blank" rel="nofollow") vikipedi

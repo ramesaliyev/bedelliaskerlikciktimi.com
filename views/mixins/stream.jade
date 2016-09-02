@@ -1,13 +1,13 @@
 mixin stream(stream)
-    .stream(class='stream-' + stream.name)
-        a.stream-title(href=stream.link target="_blank") #{stream.title}
-        ul.stream-content
+    section.stream(class='stream-' + stream.name)
+        a.stream-title(href=stream.link target="_blank" rel="nofollow") #{stream.title}
+        .stream-content
             each content in stream.content
-                li.stream-content-item
-                    div.stream-content-text !{content.text}
+                article.stream-content-item
+                    p.stream-content-text !{content.text}
                         span.stream-content-author - #{content.author}
-                    a.stream-content-date(href=content.url target="_blank" title=utils.moment(content.date).format('HH:mm DD.MM.YYYY'))
-                        | #{utils.moment(content.date).fromNow()}
-        a.stream-read-more(href=stream.link target="_blank") daha fazlasını oku...
+                    a.stream-content-date(href=content.url target="_blank" rel="nofollow" title=utils.moment(content.date).format('HH:mm DD.MM.YYYY'))
+                        time #{utils.moment(content.date).fromNow()}
+        a.stream-read-more(href=stream.link target="_blank" rel="nofollow") daha fazlasını oku...
         .stream-update-time(title=utils.moment(stream.updateTime).format('HH:mm DD.MM.YYYY'))
             | Son güncellenme: #{utils.moment(stream.updateTime).fromNow()}

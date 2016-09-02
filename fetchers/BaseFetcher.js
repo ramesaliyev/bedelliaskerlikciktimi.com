@@ -5,7 +5,8 @@ const fs = require('fs'),
       path = require('path'),
       request = require('request'),
       async = require('async'),
-      schedule = require('node-schedule');
+      schedule = require('node-schedule'),
+      modifyText = require('../lib/modifyText');
 
 /**
  * Core fetcher.
@@ -133,16 +134,24 @@ BaseFetcher.prototype.get = function(done, force) {
         }
 
         // Decorate data.
-        data = {
+        data = data.map(function(record) {
+            // Modify texts.
+            record.text = modifyText(record.text);
+
+            return record;
+        });
+
+        // Create content to cache/store.
+        var content = {
           updateTime: Date.now(),
           data: data
         };
 
         // Cache in memory.
-        self.cache = data;
+        self.cache = content;
 
         // Provide entries.
-        callback(null, data);
+        callback(null, content);
       })
     },
 

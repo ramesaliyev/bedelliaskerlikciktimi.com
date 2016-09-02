@@ -92,7 +92,7 @@ HomePage.prototype.render = function(req, res) {
   // Send cached html.
   if (Date.now() - this.lastRenderTime < 360000) {
     debug('Serving from html cache...');
-    return res.send(this.lastRenderedHTML);
+    //return res.send(this.lastRenderedHTML);
   }
 
   // Get data.

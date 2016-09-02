@@ -29,12 +29,14 @@
     "gulp-rename": "1.2.2",
     "gulp-stylus": "2.5.0",
     "jade": "1.11.0",
+    "linkifyjs": "2.1.0",
     "moment": "2.14.1",
     "morgan": "1.7.0",
     "node-schedule": "1.1.1",
     "normalize-styl": "3.0.3",
     "request": "2.74.0",
     "serve-favicon": "2.3.0",
+    "strip": "3.0.0",
     "twitter": "1.4.0"
   }
 }
