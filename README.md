@@ -2,14 +2,14 @@
 Bedelli askerlik güncel durum takip merkezi.
 
 # Kurulum
-####Gereksinimleri yükleyin:
+#### Gereksinimleri yükleyin:
     npm i
 
-####Front-End Build:
+#### Front-End Build:
     gulp
 
-####Çalıştırın:
+#### Çalıştırın:
     DEBUG=app:* npm start
 
-####Gidin:
+#### Gidin:
 [localhost:3100](http://localhost:3100)
