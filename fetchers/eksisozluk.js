@@ -8,7 +8,8 @@ var BaseFetcher = require('./BaseFetcher');
  */
 const config = global.config,
       util = require('util'),
-      async = require('async');
+      osmosis = require('osmosis'),
+      cheerio = require('cheerio');
 
 /**
  * Values
@@ -30,53 +31,115 @@ function EksiSozluk() {
 util.inherits(EksiSozluk, BaseFetcher);
 
 /**
+ * Helpers
+ */
+
+/**
+ * Scrap data.
+ */
+const makeRequest = (pageNum) => (
+  osmosis.get(
+    FETCH_URL + (pageNum ? '?p=' + pageNum : '')
+  )
+);
+
+/**
+ * Parse fetched page.
+ */
+const getPage = (pageNum) =>
+  new Promise(resolve =>
+    makeRequest(pageNum)
+      .then(resolve)
+  )
+    .then(context => context.toString())
+    .then(html => cheerio.load(html))
+
+/**
+ * Get last page of title.
+ */
+const getLastPage = ($) => (
+  +$('.pager').attr('data-pagecount')   
+);
+
+/**
+ * Convert title date string to timestamp.
+ */
+const convertTimeStringToTimestamp = timeString => {
+  let entryDate = timeString;
+
+  if (entryDate.indexOf('~') > -1) {
+    entryDate = entryDate.split('~')[0]; 
+  }
+
+  entryDate = entryDate.split(' ');
+
+  let date = entryDate[0].split('.');
+
+  if (entryDate[1]) {
+    let time = entryDate[1].split(':');
+    timestamp = +(new Date(+date[2], +(--date[1]), +date[0], +time[0], +time[1]));
+  } else {
+    timestamp = +(new Date(+date[2], +(--date[1]), +date[0]));
+  }
+
+  return timestamp;
+};
+
+/**
+ * Get entries of page.
+ */
+const getEntries = ($) => {
+  const entries = [];
+
+  $('#entry-list > li').each((index, el) => {
+    const $el = $(el);
+    const $info = $el.find('footer .info');  
+    const $date = $info.children('.entry-date');
+    const $author = $info.children('.entry-author');
+    
+    entries.push({
+      url: `https://eksisozluk.com${$date.attr('href')}`,
+      text: $el.children('.content').html(),
+      date: convertTimeStringToTimestamp($date.text()),
+      author: $author.text()
+    })
+  });
+
+  return entries;
+};
+
+/**
  * Collect last two pages from source.
  */
 EksiSozluk.prototype.collect = function(done) {
-  var self = this;
+  getPage()
+    .then($firstPage => {
+      // Get last page.
+      const lastPageNum = getLastPage($firstPage);
 
-  async.waterfall([
-    // Fetch first page.
-    function(callback) {
-        self.fetch(self.fetchURL, callback);
-    },
-    // Get number of last page.
-    function (response, callback) {
-      callback(null, +JSON.parse(response).page_count);
-    },
-    // Get content of last and previous page.
-    function(lastPageNum, callback) {
-      async.parallel({
-        last: function(cb) {
-          self.fetch(self.fetchURL + '?page=' + lastPageNum, cb);
-        },
-        prev: function(cb) {
-          self.fetch(self.fetchURL + '?page=' + (lastPageNum - 1), cb);
-        }
-      }, callback);
-    },
-    // Decorate entries.
-    function(pages, callback) {
-      var entries = [].concat(
-        JSON.parse(pages.prev).entry_detail_models,
-        JSON.parse(pages.last).entry_detail_models
-      ).reverse().map(function(entry) {
-        var entryDate = entry.date.split(' '),
-            date = entryDate[0].split('.'),
-            time = entryDate[1].split(':'),
-            timestamp = +(new Date(+date[2], +(--date[1]), +date[0], +time[0], +time[1]));
+      // Fetch last and previous page.
+      return Promise.all([
+        getPage(lastPageNum),
+        getPage(lastPageNum-1)
+      ]);
+    })
+    .then(([$lastPage, $prevPage]) => {
+      return [].concat(
+        getEntries($prevPage),
+        getEntries($lastPage)  
+      ).reverse();  
+    })
+    .then(entries => done(null, entries))
+    .catch(done)  
+};
 
-        return {
-          url: 'https://eksisozluk.com/entry/' + entry.entry_id,
-          text: entry.content,
-          date: timestamp,
-          author: entry.author
-        }
-      });
-
-      callback(null, entries);
-    }
-  ], done)
+/**
+ * Get and cache data.
+ */
+BaseFetcher.prototype.mapEveryRecord = function(data) {
+    return data.map(function(record) {
+        return record;
+    });
 };
 
 /**

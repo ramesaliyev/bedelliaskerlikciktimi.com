@@ -134,12 +134,7 @@ BaseFetcher.prototype.get = function(done, force) {
         }
 
         // Decorate data.
-        data = data.map(function(record) {
-            // Modify texts.
-            record.text = modifyText(record.text);
-
-            return record;
-        });
+        data = self.mapEveryRecord(data);
 
         // Create content to cache/store.
         var content = {
@@ -164,6 +159,18 @@ BaseFetcher.prototype.get = function(done, force) {
       });
     }
   ], done)
+};
+
+/**
+ * Map every record of data.
+ */
+BaseFetcher.prototype.mapEveryRecord = function(data) {
+    return data.map(function(record) {
+        // Modify texts.
+        record.text = modifyText(record.text);
+
+        return record;
+    });
 };
 
 /**

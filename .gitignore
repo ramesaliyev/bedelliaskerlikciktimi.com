@@ -5,3 +5,4 @@ node_modules
 public/css
 data
 configs/twitter.json
+package-lock.json
