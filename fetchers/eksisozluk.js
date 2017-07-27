@@ -65,7 +65,7 @@ const getLastPage = ($) => (
  * Convert title date string to timestamp.
  */
 const convertTimeStringToTimestamp = timeString => {
-  let entryDate = timeString;
+  var entryDate = timeString;
 
   if (entryDate.indexOf('~') > -1) {
     entryDate = entryDate.split('~')[0]; 
@@ -73,10 +73,10 @@ const convertTimeStringToTimestamp = timeString => {
 
   entryDate = entryDate.split(' ');
 
-  let date = entryDate[0].split('.');
+  var date = entryDate[0].split('.');
 
   if (entryDate[1]) {
-    let time = entryDate[1].split(':');
+    var time = entryDate[1].split(':');
     timestamp = +(new Date(+date[2], +(--date[1]), +date[0], +time[0], +time[1]));
   } else {
     timestamp = +(new Date(+date[2], +(--date[1]), +date[0]));
