@@ -5,7 +5,7 @@
       "HAYIR", "ÇIKMADI", "NO", "YOH", "CIKS", "I-IH"
     ],
     "yes": [
-      "ÇIKTI VALLA"
+      "ÇIKTI VALLA", "EVET", "YES", "ÇIKTI ÇIKTI"
     ]
   },
   "statusTexts": {
@@ -15,7 +15,7 @@
   "site": {
     "title": "Bedelli Askerlik Çıktı Mı? (Güncel Durum Takip Merkezi)",
     "description": "Bedelli askerlik ile ilgili güncel haberler, bilgiler, yorumlar.",
-    "keywords": "bedelli askerlik, 2016"
+    "keywords": "bedelli, bedelli askerlik, bedelli askerlik 2017, bedelli askerlik çıktı mı, bedelli çıktı mı"
   },
   "fetchers": {
     "eksisozluk": {
