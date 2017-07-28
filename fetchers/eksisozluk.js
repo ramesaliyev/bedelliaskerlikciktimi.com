@@ -12,11 +12,6 @@ const config = global.config,
       cheerio = require('cheerio');
 
 /**
- * Values
- */
-const FETCH_URL = config.fetchers.eksisozluk.fetchURL;
-
-/**
  * EksiSozluk Fetcher.
  *
  * @constructor
@@ -39,7 +34,7 @@ util.inherits(EksiSozluk, BaseFetcher);
  */
 const makeRequest = (pageNum) => (
   osmosis.get(
-    FETCH_URL + (pageNum ? '?p=' + pageNum : '')
+    config.fetchers.eksisozluk.fetchURL + (pageNum ? '?p=' + pageNum : '')
   )
 );
 
@@ -136,16 +131,15 @@ EksiSozluk.prototype.collect = function(done) {
 /**
  * Get and cache data.
  */
-BaseFetcher.prototype.mapEveryRecord = function(data) {
+EksiSozluk.prototype.mapEveryRecord = function(data) {
     return data.map(function(record) {
         return record;
     });
 };
-
 /**
  * Create instance
  */
-var eksisozluk = new EksiSozluk('eksisozluk', FETCH_URL);
+var eksisozluk = new EksiSozluk('eksisozluk');
 
 /**
  * Export.

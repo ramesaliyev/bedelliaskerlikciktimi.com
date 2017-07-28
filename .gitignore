@@ -4,5 +4,6 @@
 node_modules
 public/css
 data
+configs/hurriyet.json
 configs/twitter.json
 package-lock.json

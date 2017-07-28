@@ -24,11 +24,17 @@
       "link": "https://eksisozluk.com/bedelli-askerlik--39846",
       "fetchURL": "https://eksisozluk.com/bedelli-askerlik--39846"
     },
+    "hurriyet": {
+      "name": "hurriyet",
+      "title": "hürriyet",
+      "link": "http://www.hurriyet.com.tr/haberleri/bedelli-askerlik",
+      "hostname": "api.hurriyet.com.tr",
+      "path": "/v1/search/bedelli%20askerlik?&%24top=20&s=-1"
+    },
     "twitter": {
       "name": "twitter",
       "title": "twitter",
-      "link": "https://twitter.com/search?f=tweets&vertical=default&q=bedelli+askerlik&src=typd",
-      "fetchURL": ""
+      "link": "https://twitter.com/search?f=tweets&vertical=default&q=bedelli+askerlik&src=typd"
     }
   }
 }

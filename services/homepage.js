@@ -6,6 +6,7 @@ var config = global.config,
     async = require('async'),
     utils = require('../lib/utils'),
     eksisozluk = require('../fetchers/eksisozluk'),
+    hurriyet = require('../fetchers/hurriyet'),
     twitter = require('../fetchers/twitter'),
     debug = require('debug')('app:service:homepage');
 
@@ -40,6 +41,7 @@ HomePage.prototype.getData = function(done) {
    * Set fetchers instances.
    */
   fetchers.eksisozluk.instance = eksisozluk;
+  fetchers.hurriyet.instance = hurriyet;
   fetchers.twitter.instance = twitter;
 
   /**
@@ -76,7 +78,8 @@ HomePage.prototype.getData = function(done) {
     // Put streams in order.
     pageData.streams = [
       responses.twitter,
-      responses.eksisozluk
+      responses.eksisozluk,
+      responses.hurriyet
     ];
 
     done(null, pageData);
@@ -98,6 +101,7 @@ HomePage.prototype.render = function(req, res) {
   // Get data.
   this.getData(function(err, data) {
     if (err) {
+      console.error(err);
       return res.render('error');
     }
 
