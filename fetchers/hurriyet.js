@@ -67,7 +67,23 @@ Hurriyet.prototype.collect = function(done) {
     res.on("end", function () {
       var body = Buffer.concat(chunks);
 
-      done(null, processFetchedData(JSON.parse(body.toString("utf8"))));
+      if (body) {
+        const stringifiedBody = body.toString("utf8");
+
+        if (stringifiedBody) {
+          let body;
+
+          try {
+            body = JSON.parse(stringifiedBody)
+          } catch(e) {
+            return done('JSON Parsing Error');
+          }
+
+          return done(null, processFetchedData(body));    
+        }
+      }
+
+      done('Source cannot fetched.');
     });
   });
 
