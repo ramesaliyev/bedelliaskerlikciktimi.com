@@ -86,7 +86,7 @@ const convertTimeStringToTimestamp = timeString => {
 const getEntries = ($) => {
   const entries = [];
 
-  $('#entry-list > li').each((index, el) => {
+  $('#entry-item-list > li').each((index, el) => {
     const $el = $(el);
     const $info = $el.find('footer .info');  
     const $date = $info.children('.entry-date');
