@@ -18,6 +18,7 @@
   "homepage": "http://bedelliaskerlikciktimi.com",
   "private": true,
   "scripts": {
+    "prestart": "gulp",
     "start": "DEBUG=app:* node ./bin/www",
     "debug": "DEBUG=app:* node --debug ./bin/www"
   },

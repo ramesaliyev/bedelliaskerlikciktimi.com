@@ -5,11 +5,8 @@ Bedelli askerlik güncel durum takip merkezi.
 #### Gereksinimleri yükleyin:
     npm i
 
-#### Front-End Build:
-    gulp
-
 #### Çalıştırın:
-    DEBUG=app:* npm start
+    npm start
 
 #### Gidin:
 [localhost:3100](http://localhost:3100)
